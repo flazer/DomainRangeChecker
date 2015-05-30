@@ -67,6 +67,16 @@ class RecursiveChecker{
             return 0;
         }
 
+
+        if(is_array($output) && !isset($output[1]) && strpos($output[0], 'Error: 55000000002') !== false){
+            $coolDownSecs = $this->config['denic-cooldown-secs'];
+            echo "got following message. (caused cool-down ".$coolDownSecs."sec):\n";
+            echo json_encode($output)."\n";
+            sleep($coolDownSecs);
+            return doWhois($domain);
+        }
+
+
         if(is_array($output) && isset($output[1]) && strpos($output[1], 'Version:') === false){
             echo "got following unknown message. (caused quit):\n";
             echo json_encode($output)."\n";
