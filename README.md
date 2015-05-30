@@ -7,9 +7,7 @@ range. It's only working with Denic(DE)-Domains for now.
 Example (cli):
 php domainRangeCheck.php >> output
 
-
 Output-example:
-
 2015-05-30 12:21:00 checking: aaa.de Status: in use.
 2015-05-30 12:21:08 checking: aab.de Status: in use.
 2015-05-30 12:21:16 checking: aac.de Status: in use.
