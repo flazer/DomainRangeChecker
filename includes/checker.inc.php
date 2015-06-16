@@ -1,6 +1,4 @@
 <?php
-require_once('dns.inc.php');
-
 class RecursiveChecker{
 
     public $config = array();
@@ -9,7 +7,6 @@ class RecursiveChecker{
 
     public function __construct($config){
         $this->config = $config;
-        $this->dnsObj = new DNSQuery($config['dns-server']);
     }
 
     public function run($width, $position, $base_string){
@@ -21,7 +18,7 @@ class RecursiveChecker{
             }
             $domain = $base_string . $charset[$i]. '.de';
             echo date('Y-m-d H:i:s', time())." checking: ".$domain." Status: ";
-            $res = $this->doCheck($this->dnsObj, $domain);
+            $res = $this->doCheck($domain);
             switch ($res){
                 case -1:
                     echo "free!\n";
@@ -39,20 +36,12 @@ class RecursiveChecker{
         }
     }
 
-    public function doCheck($dns, $domain){
-        if($this->doDNS($dns, $domain)){
+    public function doCheck($domain){
+        if($this->doDNS($domain)){
             return 1;
         }else{
             return $this->doWhois($domain);
         }
-    }
-
-    public function doDNS($obj, $domain){
-        $result=$obj->SmartALookup($domain,5);
-        if(strlen($result) <= 0){
-            return true;
-        }
-        return false;
     }
 
     public function doWhois($domain){
@@ -85,6 +74,13 @@ class RecursiveChecker{
         return 1;
     }
 
+    public function doDNS($domain){
+        exec("host -t ANY ".$domain, $output, $result);
+        if(is_array($output) && count($output) <= 1 && strpos($output[0], 'NXDOMAIN') !== false){
+            return false;
+        }
+        return true;
+    }
 
 }
 

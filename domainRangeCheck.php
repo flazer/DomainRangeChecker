@@ -19,13 +19,9 @@ Output-example:
 2015-05-30 12:21:32 checking: aae.de Status: in use.
 
 
-It's using "PurplePixie PHP DNS Query Classes" for DNS-Queries.
-Check them out on:
-http://www.purplepixie.org/phpdns
-
 HOW does the script work:
 
-It's querying a DNS-Server for a valid A-Record.
+It's querying a DNS-Server for a valid record.
 If this fails, it will start a whois-query against denic-service.
 
 Maybe you are asking, why it's not always using denic directly
@@ -34,8 +30,8 @@ DNS-Queries are much faster and will not block us, after a certain
 time. So we can scan much faster.
 
 Unfortunately i couldn't find any information about denic's allowed
-query-intervals. I took 8 seconds as default. Which is very slow,
-but safe in my opinion.
+query-intervals. I took 8 seconds as default and 120 seconds for a 
+cooldown if we get banned. Which is very slow, but safe in my opinion.
 */
 
 require_once('includes/checker.inc.php');
