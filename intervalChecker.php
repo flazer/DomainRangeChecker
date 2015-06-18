@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * @author flazer <info@flazer.net>
+ * 
+ * Script for checking domainstates periodically
+ * (*.de - only)
+ * 
+ * 
  *  Use this statement for your MySql to create the necessary table:
 
 
