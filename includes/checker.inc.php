@@ -62,7 +62,7 @@ class RecursiveChecker{
             echo "got following message. (caused cool-down ".$coolDownSecs."sec):\n";
             echo json_encode($output)."\n";
             sleep($coolDownSecs);
-            return doWhois($domain);
+            return $this->doWhois($domain);
         }
 
 
