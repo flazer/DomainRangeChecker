@@ -1,7 +1,7 @@
-Quick and Dirty Domain-Range-Checker-Tool for DE-Domains
+Quick and Dirty Domain-Range-Checker-Tools for DE-Domains
 --------------------------------------------------------
 
-This script will check all possible domains in a specified
+This domainRangeCheck-script will check all possible domains in a specified
 range. It's only working with Denic(DE)-Domains for now.
 
 Example (cli):
@@ -27,3 +27,13 @@ time. So we can scan much faster.
 Unfortunately i couldn't find any information about denic's allowed
 query-intervals. I took 8 seconds as default and 120 seconds for a 
 cooldown if we get banned. Which is very slow, but safe in my opinion.
+
+---
+
+This intervalChecker-script will check all domains which are stored
+in your database. It will send a mail if a domainstatus changes.
+Add it to your crontab, to let it run automatically.
+
+---
+
+You will find SQL-dumps for both scripts within the specific files.
